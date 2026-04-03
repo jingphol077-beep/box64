@@ -2,11 +2,10 @@ name: Build iPhone App
 on: [push, workflow_dispatch]
 jobs:
   build:
-      runs-on: macos-latest
-          steps:
-                - uses: actions/checkout@v4
-                      - name: Build
-                              run: |
+      runs-on: macos-latesteps:
+                - uses: actions/checkout@v4.
+                - name: Build
+                  run: |
                                         mkdir build
                                                   cd build
                                                             cmake .. -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_ARCHITECTURES=arm64
@@ -16,4 +15,3 @@ jobs:
                                                                                             with:
                                                                                                       name: Winlator-iOS
                                                                                                                 path: build/box64
-                                                                                                                

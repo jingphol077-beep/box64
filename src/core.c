@@ -767,7 +767,7 @@ void pressure_vessel(int argc, const char** argv, int nextarg, const char* prog)
 #endif
 extern char** environ;
 
-int initialize(int argc, const char **argv, char** env, x64emu_t** emulator, elfheader_t** elfheader, int exec)
+int initialize(int argc, constchar **argv, char** env, x64emu_t** emulator, elfheader_t** elfheader, int exec)
 {
 #ifndef STATICBUILD
     init_malloc_hook();
@@ -803,16 +803,10 @@ int initialize(int argc, const char **argv, char** env, x64emu_t** emulator, elf
 
     ftrace = stderr;
 
-    // grab pagesize
-    box64_pagesize = sysconf(_SC_PAGESIZE);
-    if(!box64_pagesize)#ifdef __APPLE__
-        size = 16384;
-        #else
-            size = 4096;
-            #endif
-            
-        box64_pagesize = 
-
+    // grab pagesize.
+    box64_pagesize = 16384;
+        if(!box64_pagesize)
+                box64_pagesize = 16384; 
     LoadEnvVariables();
     InitializeEnvFiles();
 
