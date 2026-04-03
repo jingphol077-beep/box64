@@ -805,8 +805,13 @@ int initialize(int argc, const char **argv, char** env, x64emu_t** emulator, elf
 
     // grab pagesize
     box64_pagesize = sysconf(_SC_PAGESIZE);
-    if(!box64_pagesize)
-        box64_pagesize = 4096;
+    if(!box64_pagesize)#ifdef __APPLE__
+        size = 16384;
+        #else
+            size = 4096;
+            #endif
+            
+        box64_pagesize = 
 
     LoadEnvVariables();
     InitializeEnvFiles();
